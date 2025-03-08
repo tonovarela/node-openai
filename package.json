@@ -1,0 +1,32 @@
+{
+  "name": "openapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsnd --respawn --clear src/app.ts",
+    "serve": "tsnd --respawn --clear src/server.ts",
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node dist/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chromadb": "^1.10.5",
+    "compromise": "^14.14.4",
+    "express": "^4.21.2",
+    "marked": "^15.0.7",
+    "natural": "^8.0.1",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.10",
+    "dotenv": "^16.4.7",
+    "openai": "^4.86.2",
+    "rimraf": "^6.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.2"
+  }
+}
