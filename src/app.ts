@@ -2,12 +2,18 @@ import express from 'express';
 import OpenAI from 'openai';
 import * as dotenv from 'dotenv';
 import { marked } from 'marked'; 
-
+import cors from 'cors';
 dotenv.config();
 
 const app = express();
 const port = 3000;
 
+app.use(cors({
+  origin: '*', // Permite solicitudes desde cualquier origen
+  methods: ['GET', 'POST'], // Métodos HTTP permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
+  credentials: true // Permite incluir cookies en las solicitudes
+}));
 app.use(express.json());
 
 // Inicializa el cliente de OpenAI
@@ -17,7 +23,9 @@ const openai = new OpenAI({
 
 app.post('/ask', async (req: express.Request, res: express.Response):Promise<any> => {
   try {
-    const { question } = req.body;
+    const { question,id_usuario } = req.body;
+    console.log("ID", id_usuario);
+    console.log("Pregunta:", question);
 
     if (!question) {
       return res.status(400).json({ error: 'La pregunta es obligatoria.' });
